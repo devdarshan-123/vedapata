@@ -1,15 +1,13 @@
-import card1 from "../Images/Card1.png";
-import card2 from "../Images/Card2.png";
-import card3 from "../Images/Card3.png";
-import card4 from "../Images/Card4.png";
+import React from "react";
 
 const Complimentary = () => {
 
+  // ✅ Use public folder paths (NO import)
   const cards = [
-    { img: card1, title: "Swargnana Patha" },
-    { img: card2, title: "Ganapati Mantram" },
-    { img: card3, title: "Saraswati Mantram" },
-    { img: card4, title: "Kshama Yachana Mantra" },
+    { img: "/Card1.png", title: "Swargnana Patha" },
+    { img: "/Card2.png", title: "Ganapati Mantram" },
+    { img: "/Card3.png", title: "Saraswati Mantram" },
+    { img: "/Card4.png", title: "Kshama Yachana Mantra" },
   ];
 
   return (
@@ -41,7 +39,7 @@ const Complimentary = () => {
               className="w-full h-36 sm:h-40 md:h-44 object-cover"
             />
 
-            <div className="p-4 flex flex-col flex-grow-2">
+            <div className="p-4 flex flex-col flex-grow">
 
               <h3 className="text-[#4E2D00] text-sm sm:text-base md:text-lg font-[Vidaloka]">
                 {card.title}
@@ -72,6 +70,7 @@ const Complimentary = () => {
 
           </div>
         ))}
+
       </div>
     </section>
   );

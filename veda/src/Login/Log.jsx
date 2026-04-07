@@ -10,45 +10,57 @@ function LoginPage() {
 
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (email === "admin@gmail.com" && password === "1234") {
+    try {
+      const res = await fetch("http://localhost:8081/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-      const user = {
-        email: email,
-        authenticated: true
-      };
+      const data = await res.json();
 
-      localStorage.setItem("user", JSON.stringify(user));
+      if (res.ok) {
+        alert("Login Successful");
+        navigate("/dashboard");
+      } else {
+        alert(data.message);
+      }
 
-      navigate("/dashboard");
-
-    } else {
-      alert("Invalid Credentials");
+    } catch (err) {
+      console.log(err);
+      alert("Error logging in");
     }
   };
 
   return (
-    <div className="w-full min-h-screen flex ">
+    <div className="w-full min-h-screen flex flex-col md:flex-row">
 
-      <div className="hidden md:block md:w-[75%]">
+      {/* LEFT IMAGE */}
+      <div className="hidden md:block md:w-[60%] lg:w-[65%]">
         <img
           src={bg}
-          alt="vedic learning"
+          alt="bg"
           className="w-full h-screen object-cover"
         />
       </div>
 
-      <div className="w-full md:w-1/2 flex flex-col items-center justify-start px-6">
+      {/* RIGHT FORM */}
+      <div className="w-full md:w-[40%] lg:w-[35%] flex items-center justify-center px-4 sm:px-6">
 
-        <form onSubmit={handleLogin} className="w-full max-w-sm">
+        <form onSubmit={handleLogin} className="w-full max-w-sm py-10">
 
-          <div className="flex flex-col mb-3 mt-5">
-            <img src={logo} alt="logo" className="w-20 h-20 mb-2" />
+          {/* LOGO */}
+          <div className="flex justify-center md:justify-start mb-6">
+            <img src={logo} className="w-16 sm:w-20" />
           </div>
 
-          <h2 className="text-lg text-[#4E2D00] mb-1 font-[Vidaloka]">
+          {/* TITLE */}
+          <h2 className="text-lg sm:text-xl text-[#4E2D00] font-[Vidaloka]">
             Login
           </h2>
 
@@ -56,31 +68,32 @@ function LoginPage() {
             Please login to continue
           </p>
 
-          <label className="text-md text-[#4E2D00] font-[Vidaloka]">
+          {/* EMAIL */}
+          <label className="text-[#4E2D00] font-[Vidaloka] text-sm sm:text-base">
             Email
           </label>
-
           <input
             type="email"
             placeholder="raman@vedapatha.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full border border-[#d6ccc2] rounded-md px-3 py-2 mt-1 mb-4 outline-none"
+            className="w-full border border-[#d6ccc2] rounded-md px-3 py-2 mt-1 mb-4 outline-none text-sm"
           />
 
-          <label className="text-md text-[#4E2D00] font-[Vidaloka]">
+          {/* PASSWORD */}
+          <label className="text-[#4E2D00] font-[Vidaloka] text-sm sm:text-base">
             Password
           </label>
-
           <input
             type="password"
             placeholder="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full border border-[#d6ccc2] rounded-md px-3 py-2 mt-1 mb-3 outline-none"
+            className="w-full border border-[#d6ccc2] rounded-md px-3 py-2 mt-1 mb-3 outline-none text-sm"
           />
 
-          <div className="flex justify-between items-center text-sm mb-6">
+          {/* REMEMBER + FORGOT */}
+          <div className="flex justify-between items-center text-xs sm:text-sm mb-6">
 
             <label className="flex items-center gap-2 text-[#61554C] font-[Vidaloka]">
               <input type="checkbox" />
@@ -93,21 +106,27 @@ function LoginPage() {
 
           </div>
 
+          {/* BUTTON */}
           <button
             type="submit"
-            className="w-full bg-[#E6891A] text-white py-2 rounded-full"
+            className="w-full bg-[#E6891A] text-white py-2 sm:py-3 rounded-full text-sm sm:text-base"
           >
             Login
           </button>
 
-          <p className="text-sm text-center mt-5 text-[#61554C] font-[Vidaloka]">
-            Don't have an account?{" "}
-            <span className="text-[#E6891A] cursor-pointer">
-              Login
+          {/* REGISTER LINK */}
+          <p className="text-xs sm:text-sm text-center mt-5 text-[#61554C] font-[Vidaloka]">
+            Don’t have an account?{" "}
+            <span
+              className="text-[#E6891A] cursor-pointer"
+              onClick={() => navigate("/")}
+            >
+              Register
             </span>
           </p>
 
-          <p className="text-xs text-center text-gray-500 mt-16">
+          {/* FOOTER */}
+          <p className="text-xs text-center text-gray-500 mt-12 sm:mt-16">
             Privacy Policy | Terms of Use
           </p>
 

@@ -1,80 +1,58 @@
-import card1 from "../Images/Card1.png";
-import card2 from "../Images/Card2.png";
-import card3 from "../Images/Card3.png";
-import card4 from "../Images/Card4.png";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const Similar = () => {
+const Recommended = ({ products }) => {
 
-  const cards = [card1, card2, card3, card4];
+  const navigate = useNavigate();
 
   return (
-    <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 mt-12 py-6">
+    <div className="mt-10 overflow-hidden">
 
-      {/* Heading */}
-      <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#4E2D00] mb-8 font-[Vidaloka] text-center sm:text-left">
-        Similar Courses
-      </h2>
+      {/* SCROLL WRAPPER */}
+      <div className="flex gap-6 animate-scroll">
 
-      {/* Grid */}
-      <div
-        className="
-        grid
-        grid-cols-1
-        sm:grid-cols-2
-        md:grid-cols-3
-        lg:grid-cols-4
-        gap-8
-        place-items-center
-      "
-      >
+        {/* DUPLICATE FOR LOOP */}
+        {[...products, ...products].map((item, index) => (
 
-        {cards.map((card, index) => (
           <div
             key={index}
-            className="bg-white rounded-xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden flex flex-col max-w-[320px] w-full"
+            onClick={() => navigate(`/detail/${item.id}`)}
+            className="min-w-[260px] max-w-[260px] bg-white rounded-xl shadow-md cursor-pointer card-hover flex-shrink-0"
           >
 
             <img
-              src={card}
-              alt={`similar course ${index + 1}`}
-              className="w-full h-40 sm:h-40 md:h-44 object-cover"
+              src={item.image_url}
+              className="w-full h-40 object-cover rounded-t-xl"
+              alt={item.title}
             />
 
-            <div className="p-4 flex flex-col flex-grow">
+            <div className="p-3">
 
-              <h3 className="text-[#4E2D00] text-sm sm:text-base md:text-lg font-[Vidaloka]">
-                Observe Masters Chant
+              {/* TITLE */}
+              <h3 className="text-[#4E2D00] font-semibold truncate">
+                {item.title}
               </h3>
 
-              <p className="text-xs sm:text-sm mt-2 text-[#4E2D00] font-[Bellefair] flex-grow">
-                Learn rhythm, flow, depth by observing expert Vedic chanting.
+              {/* DESCRIPTION */}
+              <p className="text-sm text-gray-600 line-clamp-2">
+                {item.description}
               </p>
 
-              <div className="flex gap-2 mt-3 items-center">
-                <span className="font-semibold text-[#4E2D00] text-sm sm:text-base">
-                  ₹ TBD
-                </span>
-
-                <span className="text-gray-400 line-through text-xs sm:text-sm">
-                  ₹ 2000.00
-                </span>
-              </div>
-
-              <p className="text-xs sm:text-sm text-orange-500 mt-2">
-                4.7 ★{" "}
-                <span className="text-[#4E2D00] font-[Bellefair]">
-                  (1200 Reviews)
-                </span>
+              {/* PRICE */}
+              <p className="mt-2 text-[#4E2D00] font-semibold">
+                ₹{item.price || 500}
               </p>
 
             </div>
 
           </div>
+
         ))}
 
       </div>
-    </section>
+
+    </div>
   );
 };
 
-export default Similar;
+export default Recommended;
