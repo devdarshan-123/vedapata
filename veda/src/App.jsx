@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
 import LoginPage from "./Login/Log";
 import RegisterPage from "./Register/Register";
@@ -11,7 +11,7 @@ import UserDashboard from "./User/UserDashboard";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
 
         <Route path="/" element={<RegisterPage />} />
@@ -28,7 +28,7 @@ function App() {
 <Route path="/user" element={<UserDashboard />} />
 
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

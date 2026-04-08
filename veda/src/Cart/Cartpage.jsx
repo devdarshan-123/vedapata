@@ -1,15 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getCart, removeFromCart } from "./cartUtils";
 import { useNavigate } from "react-router-dom";
 
 function CartPage() {
-
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(getCart());
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setCart(getCart());
-  }, []);
 
   const handleRemove = (id) => {
     removeFromCart(id);

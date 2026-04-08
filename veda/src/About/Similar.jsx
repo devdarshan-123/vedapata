@@ -34,13 +34,37 @@ const Recommended = ({ products }) => {
               </h3>
 
               {/* DESCRIPTION */}
-              <p className="text-sm text-gray-600 line-clamp-2">
+              <p className="text-sm text-[#4E2D00] font-[Bellefair] line-clamp-2">
                 {item.description}
               </p>
 
               {/* PRICE */}
-              <p className="mt-2 text-[#4E2D00] font-semibold">
-                ₹{item.price || 500}
+              <div className="mt-2">
+                {item.price ? (
+                  <>
+                    <span className="font-semibold text-[#4E2D00] text-sm sm:text-base">
+                      ₹ {item.price}
+                    </span>
+                    <span className="block text-gray-400 line-through text-xs sm:text-sm font-[Bellefair]">
+                      ₹ 3269.00
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <span className="font-semibold text-[#4E2D00] text-sm sm:text-base">
+                      ₹ TBD
+                    </span>
+                    <span className="block text-[#7a6756] text-xs sm:text-sm font-[Bellefair]">
+                      Dakhshina upon consultation
+                    </span>
+                  </>
+                )}
+              </div>
+
+              {/* STARS + REVIEWS */}
+              <p className="text-xs sm:text-sm mt-2 font-[Bellefair] text-[#7a6756]">
+                <span className="text-[#d08a28]">4.7 ★</span>{" "}
+                <span>(1200 Reviews)</span>
               </p>
 
             </div>
