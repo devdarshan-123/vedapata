@@ -1,15 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getCart, removeFromCart } from "./cartUtils";
 import { useNavigate } from "react-router-dom";
 
 function CartPage() {
-
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(getCart());
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setCart(getCart());
-  }, []);
 
   const handleRemove = (id) => {
     removeFromCart(id);
@@ -19,7 +14,7 @@ function CartPage() {
   const total = cart.length * 500;
 
   return (
-    <div className="min-h-screen bg-[#faf7f2] px-6 md:px-12 py-10 font-[Vidaloka]">
+    <div className="min-h-screen bg-[#faf7f2] px-4 sm:px-6 md:px-12 py-10 font-[Vidaloka]">
 
       <h1 className="text-2xl md:text-3xl text-[#4E2D00] mb-8">
         Your Cart
@@ -61,11 +56,11 @@ function CartPage() {
                 </div>
 
                 {/* BUTTONS */}
-                <div className="flex gap-4 mt-4">
+                <div className="flex flex-wrap gap-3 sm:gap-4 mt-4">
 
                   <button
                     onClick={() => handleRemove(item.id)}
-                    className="border border-red-400 text-red-500 px-4 py-1 rounded-full text-sm"
+                    className="border border-red-400 text-red-500 px-4 py-1 rounded-full text-sm w-full sm:w-auto"
                   >
                     Remove
                   </button>
@@ -75,7 +70,7 @@ function CartPage() {
                       localStorage.setItem("cart", JSON.stringify([item]));
                       navigate("/payment");
                     }}
-                    className="bg-[#E6891A] text-white px-4 py-1 rounded-full text-sm"
+                    className="bg-[#E6891A] text-white px-4 py-1 rounded-full text-sm w-full sm:w-auto"
                   >
                     Buy Now
                   </button>
@@ -96,7 +91,7 @@ function CartPage() {
 
             <button
               onClick={() => navigate("/payment")}
-              className="bg-[#E6891A] text-white px-6 py-2 rounded-full"
+              className="bg-[#E6891A] text-white px-6 py-2 rounded-full w-full sm:w-auto"
             >
               Proceed to Payment
             </button>

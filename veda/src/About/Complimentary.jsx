@@ -49,21 +49,20 @@ const Complimentary = () => {
                 Learn rhythm, flow, depth by observing expert Vedic chanting.
               </p>
 
+              {/* PRICE + TEXT (matches uploaded screenshot) */}
               <div className="flex gap-2 mt-3 items-center">
                 <span className="font-semibold text-[#4E2D00] text-sm sm:text-base">
                   ₹ TBD
                 </span>
-
-                <span className="text-gray-400 line-through text-xs sm:text-sm">
-                  ₹ 2000.00
+                <span className="text-[#7a6756] text-xs sm:text-sm font-[Bellefair]">
+                  Dakhshina upon consultation
                 </span>
               </div>
 
-              <p className="text-xs sm:text-sm text-orange-500 mt-2">
-                4.7 ★{" "}
-                <span className="text-[#4E2D00] font-[Bellefair]">
-                  (1200 Reviews)
-                </span>
+              {/* STARS + REVIEWS */}
+              <p className="text-xs sm:text-sm mt-2 font-[Bellefair] text-[#7a6756]">
+                <span className="text-[#d08a28]">4.7 ★</span>{" "}
+                <span>(1200 Reviews)</span>
               </p>
 
             </div>

@@ -28,7 +28,7 @@ function PaymentPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#faf7f2] px-6 md:px-12 py-10 font-[Vidaloka]">
+    <div className="min-h-screen bg-[#faf7f2] px-4 sm:px-6 md:px-12 py-10 font-[Vidaloka]">
 
       <h1 className="text-2xl md:text-3xl text-[#4E2D00] mb-8">
         Checkout
@@ -115,7 +115,7 @@ function PaymentPage() {
         </div>
 
         {/* RIGHT SIDE — BIGGER */}
-        <div className="bg-white p-8 rounded-xl shadow-md">
+        <div className="bg-white p-6 sm:p-8 rounded-xl shadow-md">
 
           <h2 className="text-xl text-[#4E2D00] mb-6">
             Order Summary
@@ -125,12 +125,13 @@ function PaymentPage() {
           <div className="space-y-5 mb-6">
 
             {cart.map((item) => (
-              <div key={item.id} className="flex gap-4 items-center">
+              <div key={item.id} className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
 
                 {/* ✅ BIGGER IMAGE */}
                 <img
                   src={item.image_url}
-                  className="w-24 h-24 object-cover rounded-lg"
+                  alt={item.title}
+                  className="w-full sm:w-24 h-40 sm:h-24 object-cover rounded-lg"
                 />
 
                 <div className="flex-1">
